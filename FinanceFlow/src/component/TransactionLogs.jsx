@@ -1,5 +1,16 @@
 //Liste des transaction
 const TransactionLogs = ({ transactions , clearHistory }) => {
+ const handleClearHistory = () => {
+    // Afficher la popup de confirmation
+    const isConfirmed = window.confirm('Confirmez-vous la suppression de l\'historique ? Il n\'y aura aucun moyen d\'y acceder');
+
+    // Si l'utilisateur confirme, effectuez la suppression de l'historique
+    if (isConfirmed) {
+      // Appeler la fonction du composant parent pour effacer l'historique
+      clearHistory();
+    }
+    // Sinon, ne rien faire
+  };
   return (
     <div>
       <h2>Historique des Transactions</h2>
@@ -14,7 +25,7 @@ const TransactionLogs = ({ transactions , clearHistory }) => {
       ))}
       
       {/* Bouton pour effacer l'historique */}
-      <button onClick={clearHistory}>Clear History</button>
+      <button onClick={handleClearHistory}>Clear History</button>
       
     </div>
   );
