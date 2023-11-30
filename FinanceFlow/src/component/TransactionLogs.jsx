@@ -2,7 +2,7 @@
 const TransactionLogs = ({ transactions , clearHistory }) => {
  const handleClearHistory = () => {
     // Afficher la popup de confirmation
-    const isConfirmed = window.confirm('Confirmez-vous la suppression de l\'historique ? Il n\'y aura aucun moyen d\'y acceder');
+    const isConfirmed = window.confirm('Confirmez-vous la suppression de l\'historique ? Veuillez a sauvegarder votre historique avant où il sera perdu');
 
     // Si l'utilisateur confirme, effectuez la suppression de l'historique
     if (isConfirmed) {

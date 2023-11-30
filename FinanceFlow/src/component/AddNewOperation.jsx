@@ -1,5 +1,4 @@
 // AddNewOperation.js
-
 import React, { useState } from 'react';
 
 const AddNewOperation = ({ addTransaction }) => {
