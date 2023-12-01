@@ -17,7 +17,7 @@ const AddNewOperation = ({ addTransaction }) => {
       date: formattedDate,
     };
 
-    // Afficher les données de la nouvelle transaction dans la console
+    // verification de la prise en compte de l'input
     console.log('Nouvelle transaction:', newTransaction);
 
     // Appeler la fonction du composant parent pour ajouter la nouvelle transaction

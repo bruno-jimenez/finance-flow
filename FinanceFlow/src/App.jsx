@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddNewOperation from './component/AddNewOperation';
 import TransactionLogs from './component/TransactionLogs';
+import HowMuch from './component/HowMuch';
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -23,6 +24,10 @@ const App = () => {
 
       {/* Utiliser le composant TransactionLogs pour afficher la liste des transactions et le solde restant */}
       <TransactionLogs transactions={transactions} clearHistory={clearHistory}/>
+      
+      {/* Utiliser le composant TransactionLogs pour afficher la liste des transactions et le solde restant */}
+      <HowMuch transactions={transactions}/> 
+    
     </div>
   )
 }
