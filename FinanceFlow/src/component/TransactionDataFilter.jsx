@@ -1,5 +1,4 @@
 //Trier/filtrer les transactions 
-
 function TransactionDataFilter() {
     
 }
