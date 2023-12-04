@@ -1,0 +1,26 @@
+/* ResponsiveComponent.css */
+
+.responsive-container {
+  width: 653px;
+  height: 280px;
+  background-color: lightgray;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Styles pour les écrans étroits (moins de 653px de large) */
+.responsive-container.narrow-format {
+  width: 280px;
+  height: 653px;
+  background-color: lightblue;
+}
+
+/* Styles spécifiques aux écrans larges (plus de 653px de large) */
+.responsive-container.wide-format {
+  /* Vous pouvez ajouter des styles spécifiques aux écrans larges ici */
+}
+
+/* Styles spécifiques pour le fond en cyan sur les écrans étroits */
+.responsive-container.narrow-format.cyan-bg {
+  background-color: cyan;
+}
