@@ -20,7 +20,7 @@ const HowMuch = ({ transactions }) => {
   const balance = calculateBalance();
 
   return (
-    <div>
+    <div className='howmuch-container'>
       <h2>Solde Restant</h2>
       <p>votre solde : {balance} $</p>
     </div>

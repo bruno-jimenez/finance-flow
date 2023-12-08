@@ -12,7 +12,7 @@ const TransactionLogs = ({ transactions , clearHistory }) => {
     // Sinon, ne rien faire
   };
   return (
-    <div>
+    <div className="Transactionlogs-container">
       <h2>Historique des Transactions</h2>
       {transactions.map((transaction, index) => (
         <div key={index}>

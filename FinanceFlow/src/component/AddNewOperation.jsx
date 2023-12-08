@@ -1,68 +1,52 @@
-// AddNewOperation.js
 import React, { useState } from 'react';
+import DataCategorie from './DataCategorie';
 
 const AddNewOperation = ({ addTransaction }) => {
   const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSubCategory, setSelectedSubCategory] = useState('');
 
-  const handleSubmit = (e, transactionType) => {
-    e.preventDefault();
+  const handleAddTransaction = (isPositive) => {
+    if (amount.trim() === '' || selectedCategory.trim() === '') {
+      // Gérer le cas où le montant ou la catégorie est vide
+      alert('Veuillez remplir le montant et sélectionner une catégorie.');
+      return;
+    }
 
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`
+    // Déterminer si la transaction est positive ou négative
+    const transactionAmount = isPositive ? parseFloat(amount) : -parseFloat(amount);
 
-    const newTransaction = {
-      amount: transactionType === 'Ajout' ? Math.abs(Number(amount)) : -Math.abs(Number(amount)),
-      category,
-      date: formattedDate,
-    };
+    // Votre logique pour ajouter la transaction avec amount, selectedCategory et selectedSubCategory
+    // ...
 
-    // verification de la prise en compte de l'input
-    console.log('Nouvelle transaction:', newTransaction);
-
-    // Appeler la fonction du composant parent pour ajouter la nouvelle transaction
-    addTransaction(newTransaction);
-
-    // Réinitialisez les états locaux pour les informations supplémentaires si nécessaire
+    // Réinitialiser les états locaux
     setAmount('');
-    setCategory('');
+    setSelectedCategory('');
+    setSelectedSubCategory('');
   };
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e, 'Ajout')}>
-        {/* Ajoutez des champs de saisie pour les informations supplémentaires si nécessaire */}
-        <input
-          type="text"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Montant"
-        />
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Catégorie"
-        />
-        <button type="submit">Ajout</button>
-      </form>
+      <h2>Ajouter une Nouvelle Opération</h2>
+      <label>Montant:</label>
+      <input
+        type="text"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        placeholder="Montant"
+      />
 
-      <form onSubmit={(e) => handleSubmit(e, 'Perte')}>
-        {/* Ajoutez des champs de saisie pour les informations supplémentaires si nécessaire */}
-        <input
-          type="text"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Montant"
-        />
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="Catégorie"
-        />
-        <button type="submit">Perte</button>
-      </form>
+      {/* Intégrer le composant DataCategorie pour gérer les catégories et sous-catégories */}
+      <DataCategorie
+        onSelectCategorie={(category) => setSelectedCategory(category)}
+        onSelectSubCategorie={(subCategory) => setSelectedSubCategory(subCategory)}
+      />
+
+      {/* Ajouter la transaction (positive) */}
+      <button onClick={() => handleAddTransaction(true)}>Ajouter Transaction Positive</button>
+
+      {/* Ajouter la transaction (négative) */}
+      <button onClick={() => handleAddTransaction(false)}>Ajouter Transaction Négative</button>
     </div>
   );
 };

@@ -1,26 +1,46 @@
 /* ResponsiveComponent.css */
 
 .responsive-container {
-  width: 653px;
-  height: 280px;
-  background-color: lightgray;
+  width: 1920px;
+  height: 1080px;
+  background-color: rgb(72, 72, 72);
   padding: 20px;
   margin: 0 auto;
 }
 
 /* Styles pour les écrans étroits (moins de 653px de large) */
+
 .responsive-container.narrow-format {
   width: 280px;
   height: 653px;
-  background-color: lightblue;
+  background-color: rgb(0, 0, 0);
 }
 
-/* Styles spécifiques aux écrans larges (plus de 653px de large) */
-.responsive-container.wide-format {
-  /* Vous pouvez ajouter des styles spécifiques aux écrans larges ici */
+/*style de transactionlogs*/
+
+.Transactionlogs-container {
+
+   position: fixed;
+   top: 300px;
+   right: 60px;
+   width: 250px;
+   border: 2px solid rgb(227, 227, 227);
+   text-align: center;
 }
 
-/* Styles spécifiques pour le fond en cyan sur les écrans étroits */
-.responsive-container.narrow-format.cyan-bg {
-  background-color: cyan;
+/*style de howmuch*/
+
+.howmuch-container {
+  
+  position: fixed;
+  top: 183px;
+  right: 60px;
+  width: 250px;
+  border: 2px solid rgb(227, 227, 227);
+  text-align: center;
+  
 }
+
+/*style de addnewtransaction*/
+
+
