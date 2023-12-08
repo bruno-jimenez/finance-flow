@@ -39,7 +39,7 @@ const DataCategorie = ({ onSelectCategorie }) => {
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
         />
-        <button onClick={addCategory}>Ajouter Catégorie</button>
+        <button className='button' id='AddCategorie' onClick={addCategory}>Ajouter Catégorie</button>
       </div>
 
       {/* Ajouter une nouvelle sous-catégorie */}
@@ -50,7 +50,7 @@ const DataCategorie = ({ onSelectCategorie }) => {
           value={newSubCategory}
           onChange={(e) => setNewSubCategory(e.target.value)}
         />
-        <button onClick={addSubCategory}>Ajouter Sous-Catégorie</button>
+        <button className='button' id='AddSubCategorie' onClick={addSubCategory}>Ajouter Sous-Catégorie</button>
       </div>
 
       {/* Sélectionner une catégorie */}

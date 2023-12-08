@@ -25,7 +25,7 @@ const TransactionLogs = ({ transactions , clearHistory }) => {
       ))}
       
       {/* Bouton pour effacer l'historique */}
-      <button onClick={handleClearHistory}>Clear History</button>
+      <button className='button' onClick={handleClearHistory}>Effacer Historique</button>
       
     </div>
   );

@@ -43,10 +43,10 @@ const AddNewOperation = ({ addTransaction }) => {
       />
 
       {/* Ajouter la transaction (positive) */}
-      <button onClick={() => handleAddTransaction(true)}>Ajouter Transaction Positive</button>
+      <button className='button' id='Add' onClick={() => handleAddTransaction(true)}>Ajouter</button>
 
       {/* Ajouter la transaction (négative) */}
-      <button onClick={() => handleAddTransaction(false)}>Ajouter Transaction Négative</button>
+      <button className='button' id='Del' onClick={() => handleAddTransaction(false)}>Retirer</button>
     </div>
   );
 };
