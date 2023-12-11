@@ -1,11 +1,8 @@
 /* ResponsiveComponent.css */
-
-.responsive-container {
-  width: 1920px;
-  height: 1080px;
-  background-color: rgb(72, 72, 72);
-  padding: 20px;
-  margin: 0 auto;
+body {
+  
+  background-color: rgb(68, 68, 68);
+  
 }
 
 /* Styles pour les écrans étroits (moins de 653px de large) */
@@ -17,15 +14,23 @@
   font-size: small;
 }
 
+#switchResponsive {
+  
+  background-color: mediumblue;
+  border-radius: 90%;
+  bottom: 200px;
+  margin-left: 1200px;
+  position: relative;
+  
+  
+  
+}
 /*style de transactionlogs*/
 
 .Transactionlogs-container {
 
-   position: fixed;
-   top: 300px;
-   right: 60px;
-   width: 250px;
-   border: 2px solid rgb(227, 227, 227);
+   position: absolute;
+
    text-align: center;
    margin: auto;
    
@@ -35,7 +40,7 @@
 
 .howmuch-container {
   
-  position: fixed;
+  position: absolute;
   top: 183px;
   right: 60px;
   width: 250px;
@@ -70,7 +75,7 @@
 #Del {
   
   background-color: red;
-  border: 10px rgb(190, 0, 0);
+  border: 10px rgb(255, 0, 0);
   border-radius: 10px;
 }
 

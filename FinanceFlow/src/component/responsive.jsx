@@ -12,7 +12,7 @@ const ResponsiveComponent = ({ children }) => {
 
   return (
     <div className={`responsive-container ${isWideFormat ? 'wide-format' : 'narrow-format'}`}>
-      <button className='button' onClick={toggleFormat}>Changer de format</button>
+      <button className='button' id='switchResponsive' onClick={toggleFormat}>Changer de format</button>
       {React.Children.map(children, (child) =>
         React.cloneElement(child, { isWideFormat })
       )}
