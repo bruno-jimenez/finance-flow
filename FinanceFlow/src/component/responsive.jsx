@@ -1,7 +1,7 @@
 // ResponsiveComponent.js
 
 import React, { useState } from 'react';
-import '../CSS/ResponsiveComponent.css'; // Assurez-vous d'avoir le bon chemin pour le fichier CSS
+import '../CSS/index.css'; // Assurez-vous d'avoir le bon chemin pour le fichier CSS
 
 const ResponsiveComponent = ({ children }) => {
   const [isWideFormat, setIsWideFormat] = useState(true);

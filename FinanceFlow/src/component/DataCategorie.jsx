@@ -1,7 +1,7 @@
 //creation categorie et sous categorie
 import React, { useState } from 'react';
 
-const DataCategorie = ({ onSelectCategorie }) => {
+const DataCategorie = ({ onSelectCategorie, updateCategories }) => {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -12,6 +12,8 @@ const DataCategorie = ({ onSelectCategorie }) => {
     if (newCategory.trim() !== '' && !categories.includes(newCategory)) {
       setCategories([...categories, newCategory]);
       setNewCategory('');
+      // Mettre à jour les catégories dans le composant parent
+      updateCategories([...categories, newCategory]);
     }
   };
 
@@ -28,7 +30,7 @@ const DataCategorie = ({ onSelectCategorie }) => {
   };
 
   return (
-    <div>
+    <div className='categorie-container'>
       <h2>Gestion des Catégories</h2>
 
       {/* Ajouter une nouvelle catégorie */}

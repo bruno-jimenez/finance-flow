@@ -4,7 +4,8 @@ import DataCategorie from './DataCategorie';
 const AddNewOperation = ({ addTransaction }) => {
   const [amount, setAmount] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
- 
+  const [categories, setCategories] = useState([]);
+
   const handleAddTransaction = (isPositive) => {
     if (amount.trim() === '' || selectedCategory.trim() === '') {
       // Gérer le cas où le montant ou la catégorie est vide
@@ -14,10 +15,10 @@ const AddNewOperation = ({ addTransaction }) => {
 
     // Déterminer si la transaction est positive ou négative
     const transactionAmount = isPositive ? parseFloat(amount) : -parseFloat(amount);
-    
+
     //Obtenir la date
     const currentDate = new Date();
-    
+
     //formatage de la date
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
 
@@ -25,21 +26,23 @@ const AddNewOperation = ({ addTransaction }) => {
     addTransaction({
       amount: transactionAmount,
       category: selectedCategory,
-      date: formattedDate
-    })
-    
-    // ...
+      date: formattedDate,
+      // Ajoutez d'autres informations supplémentaires si nécessaire
+    });
 
     // Réinitialiser les états locaux
     setAmount('');
     setSelectedCategory('');
 
-  console.log('Transaction ajoutée:', transactionAmount, selectedCategory);    
-    
+    console.log('Transaction ajoutée:', transactionAmount, selectedCategory);
+  };
+
+  const updateCategories = (updatedCategories) => {
+    setCategories(updatedCategories);
   };
 
   return (
-    <div>
+    <div className="Operation-component">
       <h2>Ajouter une Nouvelle Opération</h2>
       <label>Montant:</label>
       <input
@@ -52,6 +55,7 @@ const AddNewOperation = ({ addTransaction }) => {
       {/* Intégrer le composant DataCategorie pour gérer les catégories et sous-catégories */}
       <DataCategorie
         onSelectCategorie={(category) => setSelectedCategory(category)}
+        updateCategories={updateCategories}
       />
 
       {/* Ajouter la transaction (positive) */}
@@ -59,9 +63,6 @@ const AddNewOperation = ({ addTransaction }) => {
 
       {/* Ajouter la transaction (négative) */}
       <button className='button' id='Del' onClick={() => handleAddTransaction(false)}>Retirer</button>
-      
-      
-      
     </div>
   );
 };

@@ -12,6 +12,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  display: grid;
+  
 }
 
 a {
@@ -25,7 +27,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: grid;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -66,4 +68,147 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+}
+.responsive-container.narrow-format {
+  
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  display: flex;
+  width: 280px;
+  height: 653px;
+  background-color: rgb(0, 0, 0);
+  font-size: small;
+}
+
+
+
+img { 
+  
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border: 2px solid #ffffff;
+  
+}
+
+h1 {
+  
+  align-self: center;
+  text-align: center; 
+  grid-column: 2/3;
+  grid-row: 1/2;
+  border: 2px solid #ffffff;
+  
+}
+
+#Add {
+  
+  background-color: green;
+  border-color: #000000;
+  
+}
+
+#Del {
+  
+  background-color: red;
+  border-color: #000000;
+  
+}
+
+.box {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+  grid-gap: 10px;
+  
+  
+}
+
+div[class*="container"] {
+  
+  border-radius: 10px;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+div[class*="howmuch"] {
+ 
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: 2px solid #ff00c3;
+    /* bordure de la boîte */
+  
+}
+
+div[class*="Transactionlogs"] {
+  
+  grid-column: 2 / 3;
+  grid-row: 3 / 5;
+  border: 2px solid #ffea00; /* bordure de la boîte */
+  
+}
+
+div[class*="Operation"] {
+  
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+  border: 2px solid #0026ff; /* bordure de la boîte */
+  
+}
+
+div[class*="categorie"] {
+  
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: 2px solid #1aff00; /* bordure de la boîte */
+  
+  
+}
+
+#switchResponsive {
+  
+
+  background-color: mediumblue;
+  height: 50px;
+  border: 2px solid rgb(255, 0, 0)/* bordure de la boîte */
+}
+
+div[class*='DataFilter'] {
+  
+  flex-wrap: wrap;
+  grid-column: 3 / 3;
+  grid-row: 2 / 5;
+  border: 2px solid #ff00c3;
+  
+}
+
+.bouchetrou {
+  
+  font-display: none;
+  background-color: #00bfff;
+  border: 2px solid #00bfff;
+}
+
+#un {
+  
+  display:contents none;
+  
+  grid-column: 3/3;
+  grid-row: 1/2;
+  
+}
+
+.logotitleun {
+  
+  background-color: #00bfff;
+  
 }
