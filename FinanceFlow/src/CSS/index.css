@@ -26,11 +26,12 @@ a:hover {
 }
 
 body {
+  
   margin: 0;
-  display: grid;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: white;
+
 }
 
 h1 {
@@ -39,6 +40,7 @@ h1 {
 }
 
 button {
+
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -48,13 +50,20 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
 }
 button:hover {
+
   border-color: #ffffff;
+
 }
+
 button:focus,
+
 button:focus-visible {
+
   outline: 10px auto -webkit-focus-ring-color;
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -70,40 +79,19 @@ button:focus-visible {
   }
 }
 
+.responsive-container.wide-format {
+
+  
 
 }
+
 .responsive-container.narrow-format {
-  
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+
   display: flex;
   width: 280px;
   height: 653px;
   background-color: rgb(0, 0, 0);
   font-size: small;
-}
-
-
-
-img { 
-  
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  border: 2px solid #ffffff;
-  
-}
-
-h1 {
-  
-  align-self: center;
-  text-align: center; 
-  grid-column: 2/3;
-  grid-row: 1/2;
-  border: 2px solid #ffffff;
-  
 }
 
 #Add {
@@ -120,50 +108,124 @@ h1 {
   
 }
 
-.box {
+/* Organisation Grid */
+
+div[class*="header"] {
   
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 100px 100px 100px 100px 100px;
+  grid-template-rows: 400px;
   grid-gap: 10px;
+  background-color: rgba(55, 99, 241, 0.819);
+  padding: 20px;
+  place-items: center;
+}
+
+div[class*="principale"] {
   
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+  background-color: rgba(44, 239, 184, 0.6);
+  padding: 20px;  
+
+}
+
+div[class*="secondaire"] {
+  
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+  background-color: lightgreen;
+  padding: 20px;  
   
 }
 
-div[class*="container"] {
+div[class*="footer"] {
   
-  border-radius: 10px;
-  border: 3px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  background-color: lightcoral;
+  padding: 20px;
+  
+}
+
+/*Organisation interne de Grid header*/
+
+img { 
+  
+  height: auto;
+  width: 100%;
+  grid-column: 1/2;
+  
+  /*border: 2px solid #ffffff;*/
+
+  
+}
+
+h1 {
+    
+  align-self: center;
+  text-align: center; 
+  grid-column: 2/3;
+  /*border: 2px solid #ffffff;*/
+  
+}
+
+#un {
+  
+  align-self: center;
+  text-align: center; 
+  grid-column: 3/3;
+  /*border: 2px solid #ffffff;*/
+  
+}
+
+/*Organisation interne de grid Principale*/
+
+div[class*="Operation"] {
+  
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border: 2px solid #0026ff; /* bordure de la boîte */
   
 }
 
 div[class*="howmuch"] {
  
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-column: 1/2;
+  grid-row: 2/3;
   border: 2px solid #ff00c3;
     /* bordure de la boîte */
   
 }
 
+div[class*='DataFilter'] {
+  
+  flex-wrap: wrap;
+  grid-column: 2/3;
+  grid-row: 1/3;
+  border: 2px solid #ff00c3;
+  
+}
+
 div[class*="Transactionlogs"] {
   
-  grid-column: 2 / 3;
-  grid-row: 3 / 5;
+  grid-column: 3/5;
+  grid-row: 1/3;
   border: 2px solid #ffea00; /* bordure de la boîte */
   
 }
 
-div[class*="Operation"] {
-  
-  grid-column: 1 / 2;
-  grid-row: 2 / 4;
-  border: 2px solid #0026ff; /* bordure de la boîte */
-  
-}
+/*Organisation interne de grid Secondaire*/
+
+
+
+/*Organisation interne de grid Footer*/
+
 
 div[class*="categorie"] {
   
@@ -182,33 +244,3 @@ div[class*="categorie"] {
   border: 2px solid rgb(255, 0, 0)/* bordure de la boîte */
 }
 
-div[class*='DataFilter'] {
-  
-  flex-wrap: wrap;
-  grid-column: 3 / 3;
-  grid-row: 2 / 5;
-  border: 2px solid #ff00c3;
-  
-}
-
-.bouchetrou {
-  
-  font-display: none;
-  background-color: #00bfff;
-  border: 2px solid #00bfff;
-}
-
-#un {
-  
-  display:contents none;
-  
-  grid-column: 3/3;
-  grid-row: 1/2;
-  
-}
-
-.logotitleun {
-  
-  background-color: #00bfff;
-  
-}
