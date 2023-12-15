@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import DataCategorie from './DataCategorie';
 
 const AddNewOperation = ({ addTransaction }) => {
   const [amount, setAmount] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [categories, setCategories] = useState([]);
 
   const handleAddTransaction = (isPositive) => {
     if (amount.trim() === '' || selectedCategory.trim() === '') {
@@ -16,10 +14,10 @@ const AddNewOperation = ({ addTransaction }) => {
     // Déterminer si la transaction est positive ou négative
     const transactionAmount = isPositive ? parseFloat(amount) : -parseFloat(amount);
 
-    //Obtenir la date
+    // Obtenir la date
     const currentDate = new Date();
 
-    //formatage de la date
+    // Formatage de la date
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
 
     // Votre logique pour ajouter la transaction avec amount, selectedCategory et selectedSubCategory
@@ -37,10 +35,6 @@ const AddNewOperation = ({ addTransaction }) => {
     console.log('Transaction ajoutée:', transactionAmount, selectedCategory);
   };
 
-  const updateCategories = (updatedCategories) => {
-    setCategories(updatedCategories);
-  };
-
   return (
     <div className="Operation-component">
       <h2>Ajouter une Nouvelle Opération</h2>
@@ -52,11 +46,16 @@ const AddNewOperation = ({ addTransaction }) => {
         placeholder="Montant"
       />
 
-      {/* Intégrer le composant DataCategorie pour gérer les catégories et sous-catégories */}
-      <DataCategorie
-        onSelectCategorie={(category) => setSelectedCategory(category)}
-        updateCategories={updateCategories}
-      />
+      {/* Sélectionner une catégorie */}
+      <div>
+        <label>Sélectionner une Catégorie:</label>
+        <input
+          type="text"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          placeholder="Catégorie"
+        />
+      </div>
 
       {/* Ajouter la transaction (positive) */}
       <button className='button' id='Add' onClick={() => handleAddTransaction(true)}>Ajouter</button>

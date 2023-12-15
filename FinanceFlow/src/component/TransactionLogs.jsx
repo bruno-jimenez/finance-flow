@@ -1,34 +1,48 @@
-//Liste des transaction
-const TransactionLogs = ({ transactions , clearHistory }) => {
- const handleClearHistory = () => {
-    // Afficher la popup de confirmation
-    const isConfirmed = window.confirm('Confirmez-vous la suppression de l\'historique ? Veuillez a sauvegarder votre historique avant où il sera perdu');
+import React, { useRef, useEffect } from 'react';
 
-    // Si l'utilisateur confirme, effectuez la suppression de l'historique
+const TransactionLogs = ({ transactions, clearHistory }) => {
+  const transactionListRef = useRef(null);
+
+  useEffect(() => {
+    // Faire défiler automatiquement vers le bas lorsque de nouvelles transactions sont ajoutées
+    if (transactionListRef.current) {
+      transactionListRef.current.scrollTop = 1;
+    }
+  }, [transactions]);
+
+  const handleClearHistory = () => {
+    const isConfirmed = window.confirm(
+      'Confirmez-vous la suppression de l\'historique ? Veuillez à sauvegarder votre historique avant où il sera perdu.'
+    );
+
     if (isConfirmed) {
-      // Appeler la fonction du composant parent pour effacer l'historique
       clearHistory();
     }
-    // Sinon, ne rien faire
   };
+
   return (
     <div className="Transactionlogs-container">
       <h2>Historique des Transactions</h2>
-      {transactions.map((transaction, index) => (
-        <div key={index}>
-          <p>Montant: {transaction.amount} $</p>
-          <p>Catégorie: {transaction.category}</p>
-          <p>Date: {transaction.date}</p>
-          {/* Ajoutez d'autres champs de saisie pour les informations supplémentaires si nécessaire */}
-          <hr />
-        </div>
-      ))}
-      
-      {/* Bouton pour effacer l'historique */}
-      <button className='button' onClick={handleClearHistory}>Effacer Historique</button>
-      
+      <button id='seeall'>Tout voir</button>
+      <div className="transaction-list" ref={transactionListRef}>
+        {transactions.slice(0, 9).map((transaction, index) => (
+          <div key={index} className="transaction-item">
+            <p>Montant: {transaction.amount} $</p>
+            <p>Catégorie: {transaction.category}</p>
+            <p>Date: {transaction.date}</p>
+            {/* Ajoutez d'autres champs de saisie pour les informations supplémentaires si nécessaire */}
+            <hr />
+          </div>
+        ))}
+      </div>
+      <div className="button-container">
+        <button onClick={handleClearHistory} id='clear'>Clear History</button>
+
+        <button id='edit'>Edit</button>
+        {/* Ajoutez d'autres boutons ou éléments de menu déroulant ici pour l'édition */}
+      </div>
     </div>
   );
 };
 
-export default TransactionLogs
+export default TransactionLogs;

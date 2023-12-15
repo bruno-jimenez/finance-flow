@@ -4,6 +4,7 @@ import TransactionLogs from './component/TransactionLogs';
 import HowMuch from './component/HowMuch';
 import ResponsiveComponent from './component/responsive';
 import TransactionDataFilter from './component/TransactionDataFilter';
+import DataCategorie from './component/DataCategorie';
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -16,6 +17,11 @@ const App = () => {
 
   const clearHistory = () => {
     setTransactions([]);
+  };
+  
+  
+  const addCategory = (category) => {
+    setCategories([...categories, category]);
   };
 
   return (
@@ -42,7 +48,8 @@ const App = () => {
         
         <div className='Section-secondaire'>
         
-        
+          {/* Composant DataCategorie pour gérer les catégories */}
+          <DataCategorie categories={categories} addCategory={addCategory} />
         
         </div>
           
