@@ -1,5 +1,3 @@
-//Solde restant
-
 import React from 'react';
 
 const HowMuch = ({ transactions }) => {

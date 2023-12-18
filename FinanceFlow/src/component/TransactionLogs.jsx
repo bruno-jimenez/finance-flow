@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import TransactionData from './TransactionData';
 
-const TransactionLogs = ({ transactions, clearHistory }) => {
+const TransactionLogs = ({ transactions, clearHistory, updateTransaction }) => {
   const transactionListRef = useRef(null);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   useEffect(() => {
     // Faire défiler automatiquement vers le bas lorsque de nouvelles transactions sont ajoutées
@@ -20,32 +22,51 @@ const TransactionLogs = ({ transactions, clearHistory }) => {
     }
   };
 
+  const handleEditTransaction = (transaction) => {
+    // Mettre à jour la transaction sélectionnée
+    setSelectedTransaction(transaction);
+  };
+
+  const handleUpdateTransaction = (updatedTransaction) => {
+    // Mettre à jour la transaction dans la liste des transactions
+    const updatedTransactions = transactions.map((t) =>
+      t === selectedTransaction ? updatedTransaction : t
+    );
+    // Mettre à jour la liste des transactions dans le composant parent
+    updateTransaction(updatedTransactions);
+    // Réinitialiser la transaction sélectionnée
+    setSelectedTransaction(null);
+  };
+
   return (
     <div className="Transactionlogs-container">
       <div className="title-logs">
       <p id='deux'></p>
         <h2 id='logs'>Historique des Transactions</h2>
       <p id='trois'></p>
-      </div>
+      </div>  
       <div className="transaction-list" ref={transactionListRef}>
-        {transactions.slice(0, 18).reverse().map((transaction, index) => {
-          const adjustedIndex = transactions.length - 1 - index;
-          return (
-            <div key={adjustedIndex} className="transaction-item">
-              <p>Montant: {transaction.amount} $</p>
-              <p>Catégorie: {transaction.category}</p>
-              <p>Date: {transaction.date}</p>
-              {/* Ajoutez d'autres champs de saisie pour les informations supplémentaires si nécessaire */}
-              <hr />
-            </div>
-          );
-        })}
+        {transactions.slice(0, 9).map((transaction, index) => (
+          <div key={index} className="transaction-item">
+            <p>Montant: {transaction.amount} $</p>
+            <p>Catégorie: {transaction.category}</p>
+            <p>Date: {transaction.date}</p>
+            <button onClick={() => handleEditTransaction(transaction)}>Edit</button>
+            <hr />
+          </div>
+        ))}
       </div>
       <div className="button-container">
         <button onClick={handleClearHistory} id='clear'>Clear History</button>
-        <button id='edit'>Edit</button>
-        {/* Ajoutez d'autres boutons ou éléments de menu déroulant ici pour l'édition */}
       </div>
+
+      {selectedTransaction && (
+        <TransactionData
+          selectedTransaction={selectedTransaction}
+          onUpdate={handleUpdateTransaction}
+          onCancel={() => setSelectedTransaction(null)}
+        />
+      )}
     </div>
   );
 };

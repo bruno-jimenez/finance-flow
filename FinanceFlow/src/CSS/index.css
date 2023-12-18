@@ -34,6 +34,17 @@ body {
 
 }
 
+body::-webkit-scrollbar-thumb{
+  
+  color: gainsboro;
+  
+}
+
+body::-webkit-scrollbar-thumb {
+  
+  color: #5d5d5d;
+  
+}
 
 button {
 
@@ -75,6 +86,12 @@ button:focus-visible {
   }
 }
 
+hr {
+  
+  border-width: 0px;
+  
+}
+
 .responsive-container.wide-format {
 
   
@@ -112,7 +129,7 @@ div[class*="principale"] {
   
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 350px);
+  grid-template-rows: repeat(2, 300px);
   grid-gap: 10px;
   background: rgb(0,255,220);
   background: linear-gradient(180deg, rgba(0,255,220,1) 0% ,
@@ -248,7 +265,7 @@ div[class*="logs"] {
 .title-logs {
   
   display: grid;
-  grid-template-columns: 1fr 350px 1fr;
+  grid-template-columns: 1fr 300px 1fr;
   height: 75px;
 
   
@@ -309,7 +326,7 @@ height: 75px;
 
 .transaction-list {
   
-    height: 500px;
+    height: 400px;
     overflow-y: scroll;
     
 }
@@ -321,7 +338,7 @@ height: 75px;
 }
 
 .transaction-list::-webkit-scrollbar-thumb {
-    background-color: #888; /* Couleur du bouton de défilement */
+    background-color: #ffffff; /* Couleur du bouton de défilement */
 }
 
 .transaction-list::-webkit-scrollbar-track {
@@ -335,7 +352,14 @@ height: 75px;
   padding: 10px;
   border-radius: 15%;
   background-color: #5d5d5d;
+  
             
+}
+
+.p-log {
+  
+  margin: 0px;
+  
 }
 
 .button-container {

@@ -1,11 +1,9 @@
-//creation categorie et sous categorie
 import React, { useState } from 'react';
-
 
 const DataCategorie = ({ categories, addCategory }) => {
   const [newCategory, setNewCategory] = useState('');
 
-  const handleAddCategory = () => {
+  const addNewCategory = () => {
     if (newCategory.trim() !== '' && !categories.includes(newCategory)) {
       addCategory(newCategory);
       setNewCategory('');
@@ -14,7 +12,8 @@ const DataCategorie = ({ categories, addCategory }) => {
 
   return (
     <div className='categorie-container'>
-      <h2 id='categ'>Gestion des Catégories</h2>
+      <h2>Gestion des Catégories</h2>
+
       <div>
         <label>Nouvelle Catégorie:</label>
         <input
@@ -22,11 +21,12 @@ const DataCategorie = ({ categories, addCategory }) => {
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
         />
-        <button className='button' id='AddCategorie' onClick={handleAddCategory}>Ajouter Catégorie</button>
+        <button className='button' id='AddCategorie' onClick={addNewCategory}>Ajouter Catégorie</button>
       </div>
+
+      {/* ... d'autres éléments du composant */}
     </div>
   );
 };
 
 export default DataCategorie;
-
