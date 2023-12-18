@@ -22,10 +22,11 @@ const TransactionLogs = ({ transactions, clearHistory }) => {
 
   return (
     <div className="Transactionlogs-container">
+    <div className="title-logs">
       <h2>Historique des Transactions</h2>
-      <button id='seeall'>Tout voir</button>
+    </div>  
       <div className="transaction-list" ref={transactionListRef}>
-        {transactions.slice(0, 9).map((transaction, index) => (
+        {transactions.slice(0, 9).reverse().map((transaction, index) => (
           <div key={index} className="transaction-item">
             <p>Montant: {transaction.amount} $</p>
             <p>Catégorie: {transaction.category}</p>
