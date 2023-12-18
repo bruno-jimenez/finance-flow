@@ -16,7 +16,7 @@ HowMuch : 100%
 *[Bruno Jimenez]*
 
 responsive : 50% 
-<br />Mobile not adding
+<br />Mobile not adding *[Noumer Al zubi]* part 
 
 *[Bruno Jimenez]*
 
@@ -30,10 +30,17 @@ TransactionDataFilter : 75%
 
 *[Bruno Jimenez]*
 
-TransactionLogs : 75%
-<br /> adding the autoclear for the logs display add 2 button <br />-> Download all the logs <br />-> See all the logs
+TransactionLogs : 95%
+<br /> finsih just need to link the edit button to the component for edition
 
 *[Bruno Jimenez]*
+
+**CSS :**
+
+URGENT before Friday !!
+*[Bruno Jimenez]*
+
+
 
 **Maybe added**
 
