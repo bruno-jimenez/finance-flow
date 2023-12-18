@@ -14,7 +14,7 @@ const DataCategorie = ({ categories, addCategory }) => {
 
   return (
     <div className='categorie-container'>
-      <h2>Gestion des Catégories</h2>
+      <h2 id='categ'>Gestion des Catégories</h2>
       <div>
         <label>Nouvelle Catégorie:</label>
         <input
@@ -29,3 +29,4 @@ const DataCategorie = ({ categories, addCategory }) => {
 };
 
 export default DataCategorie;
+

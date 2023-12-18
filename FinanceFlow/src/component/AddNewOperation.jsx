@@ -37,7 +37,7 @@ const AddNewOperation = ({ addTransaction }) => {
 
   return (
     <div className="Operation-component">
-      <h2>Ajouter une Nouvelle Opération</h2>
+      <h2 id='Addop'>Ajouter une Nouvelle Opération</h2>
       <label>Montant:</label>
       <input
         type="text"

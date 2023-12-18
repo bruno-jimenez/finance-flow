@@ -22,23 +22,27 @@ const TransactionLogs = ({ transactions, clearHistory }) => {
 
   return (
     <div className="Transactionlogs-container">
-    <div className="title-logs">
-      <h2>Historique des Transactions</h2>
-    </div>  
+      <div className="title-logs">
+      <p id='deux'></p>
+        <h2 id='logs'>Historique des Transactions</h2>
+      <p id='trois'></p>
+      </div>
       <div className="transaction-list" ref={transactionListRef}>
-        {transactions.slice(0, 9).reverse().map((transaction, index) => (
-          <div key={index} className="transaction-item">
-            <p>Montant: {transaction.amount} $</p>
-            <p>Catégorie: {transaction.category}</p>
-            <p>Date: {transaction.date}</p>
-            {/* Ajoutez d'autres champs de saisie pour les informations supplémentaires si nécessaire */}
-            <hr />
-          </div>
-        ))}
+        {transactions.slice(0, 18).reverse().map((transaction, index) => {
+          const adjustedIndex = transactions.length - 1 - index;
+          return (
+            <div key={adjustedIndex} className="transaction-item">
+              <p>Montant: {transaction.amount} $</p>
+              <p>Catégorie: {transaction.category}</p>
+              <p>Date: {transaction.date}</p>
+              {/* Ajoutez d'autres champs de saisie pour les informations supplémentaires si nécessaire */}
+              <hr />
+            </div>
+          );
+        })}
       </div>
       <div className="button-container">
         <button onClick={handleClearHistory} id='clear'>Clear History</button>
-
         <button id='edit'>Edit</button>
         {/* Ajoutez d'autres boutons ou éléments de menu déroulant ici pour l'édition */}
       </div>
