@@ -441,37 +441,49 @@ div[class*="categorie"] {
   background: rgb(63,94,251);
   background: radial-gradient(circle, rgba(63,94,251,1) 84%, rgba(70,208,252,1) 100%); /* bordure de la boîte */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   border-radius: 25px;
   border: solid 1px #000000;
   padding: 15px;
+  height: 168px;
+  width:768px;
+  
 
 }
 
 
 #h2-categorie {
   
-  grid-column: 1/4;
+  grid-column: span 3;
   
 }
 
 .newsuborcate {
   
-  border:solid 2px black;  
+  border:solid 2px black; 
   
 }
 
 #cate {
   
-  
-  
+  grid-column: span 1;
+  grid-row: 2/3;
+  width: 350px;
+ 
 }
 
 #sub {
   
-  grid-column: 2/4;
+  grid-column: span 2;
   grid-row: 2/3;
+  width: 400px;
+  
+}
+
+.nobr {
+  
+  white-space: nowrap;
   
 }
 
