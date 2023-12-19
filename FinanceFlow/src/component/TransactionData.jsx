@@ -18,7 +18,7 @@ const TransactionData = ({ selectedTransaction, onUpdate, onCancel, categories }
   };
 
   return (
-    <div className="TransactionData-container">
+    <div className="modify-container">
       <h2>Modifier la Transaction</h2>
       <label>Montant:</label>
       <input
