@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import TransactionData from './TransactionData';
 
-const TransactionLogs = ({ transactions, clearHistory, updateTransaction }) => {
+const TransactionLogs = ({ transactions, clearHistory, updateTransaction, categories }) => {
   const transactionListRef = useRef(null);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
@@ -41,17 +41,21 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction }) => {
   return (
     <div className="Transactionlogs-container">
       <div className="title-logs">
-      <p id='deux'></p>
+        <p id='deux'></p>
         <h2 id='logs'>Historique des Transactions</h2>
-      <p id='trois'></p>
+        <p id='trois'></p>
       </div>  
       <div className="transaction-list" ref={transactionListRef}>
         {transactions.slice(0, 9).map((transaction, index) => (
           <div key={index} className="transaction-item">
-            <p>Montant: {transaction.amount} $</p>
-            <p>Catégorie: {transaction.category}</p>
-            <p>Date: {transaction.date}</p>
-            <button onClick={() => handleEditTransaction(transaction)}>Edit</button>
+            <p className='list-p' id='montant'>Montant: {transaction.amount} $</p>
+            <p className='list-p' id='categorie'>Catégorie: {transaction.category}</p>
+            <p className='list-p' id='date'>Date: {transaction.date}</p>
+            <p className='list-p' id='description'>Description: {transaction.description || '-'}</p>
+            <p className='list-p' id='lieu'>Lieu: {transaction.place || '-'}</p>
+            <button id='edit' onClick={() => handleEditTransaction(transaction)}>
+              <img src='/img/editer.png' alt='Editer'/>
+            </button>
             <hr />
           </div>
         ))}
@@ -65,6 +69,7 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction }) => {
           selectedTransaction={selectedTransaction}
           onUpdate={handleUpdateTransaction}
           onCancel={() => setSelectedTransaction(null)}
+          categories={categories}
         />
       )}
     </div>

@@ -9,7 +9,9 @@ const AddNewOperation = ({ addTransaction, categories }) => {
     addTransaction({
       amount: isPositive ? parseFloat(amount) : -parseFloat(amount),
       category: selectedCategory,
-      // Ajoutez d'autres informations supplémentaires si nécessaire
+      description: '', // Ajoutez votre logique pour la description
+      place: '', // Ajoutez votre logique pour le lieu
+      date: new Date().toISOString(), // Date actuelle
     });
 
     // Réinitialiser les états locaux
@@ -43,14 +45,10 @@ const AddNewOperation = ({ addTransaction, categories }) => {
       </select>
 
       {/* Ajouter la transaction (positive) */}
-      <button className='button' id='Add' onClick={() => handleAddTransaction(true)}>
-        Ajouter
-      </button>
+      <button className='button' id='Add' onClick={() => handleAddTransaction(true)}>Ajouter</button>
 
       {/* Ajouter la transaction (négative) */}
-      <button className='button' id='Del' onClick={() => handleAddTransaction(false)}>
-        Retirer
-      </button>
+      <button className='button' id='Del' onClick={() => handleAddTransaction(false)}>Retirer</button>
     </div>
   );
 };

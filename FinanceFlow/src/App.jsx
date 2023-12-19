@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import AddNewOperation from './component/AddNewOperation';
 import TransactionLogs from './component/TransactionLogs';
@@ -11,7 +11,7 @@ import TransactionData from './component/TransactionData';
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedTransaction, setSelectedTransaction] = useState(null); // Ajout de la définition
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   const addTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
@@ -34,7 +34,7 @@ const App = () => {
     <ResponsiveComponent>
       <div>
         <div className='Section-header'>
-          <img src="../logo.png" alt="Photo de plage vue du dessus" />
+          <img src="/img/logo.png" id='logo' alt="logo" />
           <h1>Gestionnaire de Budget</h1>
           <p id='un'></p>
         </div>
@@ -47,27 +47,39 @@ const App = () => {
           <TransactionDataFilter transactions={transactions} categories={categories} />
 
           {/* Utiliser le composant TransactionLogs pour afficher la liste des transactions et le solde restant */}
-          <TransactionLogs transactions={transactions} clearHistory={clearHistory} updateTransaction={updateTransaction} />
+          <TransactionLogs transactions={transactions} clearHistory={clearHistory} updateTransaction={updateTransaction} categories={categories} />
 
-          {/* Utiliser le composant TransactionLogs pour afficher la liste des transactions et le solde restant */}
+          {/* Utiliser le composant HowMuch pour afficher le solde restant */}
           <HowMuch transactions={transactions} />
         </div>
       
         <div className='Section-secondaire'>
-        
           {/* Composant DataCategorie pour gérer les catégories */}
           <DataCategorie categories={categories} addCategory={addCategory} />
           
-          {/* Composant TransactionData*/}
-          <TransactionData selectedTransaction={selectedTransaction} onUpdate={(updatedTransaction) => 
-          {updateTransaction(transactions.map(t => (t === selectedTransaction ? updatedTransaction : t)));}}
-          onCancel={() => setSelectedTransaction(null)}/>
+          {/* Composant TransactionData */}
+          {selectedTransaction && (
+            <TransactionData
+              selectedTransaction={selectedTransaction}
+              onUpdate={(updatedTransaction) => {
+                updateTransaction(transactions.map(t => (t === selectedTransaction ? updatedTransaction : t)));
+              }}
+              onCancel={() => setSelectedTransaction(null)}
+              categories={categories}
+            />
+          )}
           
         </div>
         
         <div className='Section-footer'>
           {/* Votre contenu de pied de page */}
-        
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+          
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+          
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+          
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
         </div>
       
       </div>

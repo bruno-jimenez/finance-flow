@@ -1,43 +1,11 @@
 import React, { useState } from 'react';
 
-const TransactionDataFilter = ({ transactions, categories }) => {
+const TransactionDataFilter = ({ transactions, categories, filterTransactions }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [minAmount, setMinAmount] = useState('');
   const [maxAmount, setMaxAmount] = useState('');
-
-  const filterTransactions = () => {
-    // Appliquer les filtres sur la liste des transactions
-    let filteredTransactions = [...transactions];
-
-    if (selectedCategory !== '') {
-      filteredTransactions = filteredTransactions.filter(transaction => transaction.category === selectedCategory);
-    }
-
-    if (startDate !== '') {
-      const startDateFilter = new Date(startDate);
-      filteredTransactions = filteredTransactions.filter(transaction => new Date(transaction.date) >= startDateFilter);
-    }
-
-    if (endDate !== '') {
-      const endDateFilter = new Date(endDate);
-      filteredTransactions = filteredTransactions.filter(transaction => new Date(transaction.date) <= endDateFilter);
-    }
-
-    if (minAmount !== '') {
-      const minAmountFilter = parseFloat(minAmount);
-      filteredTransactions = filteredTransactions.filter(transaction => transaction.amount >= minAmountFilter);
-    }
-
-    if (maxAmount !== '') {
-      const maxAmountFilter = parseFloat(maxAmount);
-      filteredTransactions = filteredTransactions.filter(transaction => transaction.amount <= maxAmountFilter);
-    }
-
-    // Vous pouvez maintenant utiliser filteredTransactions comme liste filtrée
-    console.log('Transactions filtrées:', filteredTransactions);
-  };
 
   return (
     <div className="TransactionDataFilter-container">
@@ -66,7 +34,13 @@ const TransactionDataFilter = ({ transactions, categories }) => {
       <input type="number" value={maxAmount} onChange={(e) => setMaxAmount(e.target.value)} />
 
       {/* Bouton pour appliquer les filtres */}
-      <button onClick={filterTransactions}>Appliquer les filtres</button>
+      <button onClick={() => filterTransactions({
+        selectedCategory,
+        startDate,
+        endDate,
+        minAmount,
+        maxAmount,
+      })}>Appliquer les filtres</button>
     </div>
   );
 };
