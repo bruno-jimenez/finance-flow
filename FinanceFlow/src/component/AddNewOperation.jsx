@@ -21,8 +21,8 @@ const AddNewOperation = ({ addTransaction, categories }) => {
 
   return (
     <div className="Operation-component">
-      <h2>Ajouter une Nouvelle Opération</h2>
-      <label>Montant:</label>
+      <h2>Add new Opération</h2>
+      <label>Amount : </label>
       <input
         type="text"
         value={amount}
@@ -31,12 +31,12 @@ const AddNewOperation = ({ addTransaction, categories }) => {
       />
 
       {/* Utiliser directement la liste de catégories */}
-      <label>Catégorie:</label>
+      <label>  Categorie:</label>
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
-        <option value="">-- Sélectionner --</option>
+        <option value="">--Select--</option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category}
