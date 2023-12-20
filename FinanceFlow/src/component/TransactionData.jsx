@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const TransactionData = ({ selectedTransaction, onUpdate, onCancel, categories }) => {
   const [amount, setAmount] = useState(selectedTransaction.amount.toString());
@@ -18,7 +18,7 @@ const TransactionData = ({ selectedTransaction, onUpdate, onCancel, categories }
   };
 
   return (
-    <div className="modify-container">
+    <div className="modify">
       <h2>Modifier la Transaction</h2>
       <label>Montant:</label>
       <input

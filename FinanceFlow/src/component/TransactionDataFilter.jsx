@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
+import TransactionData from './TransactionData';
 
-const TransactionDataFilter = ({ transactions, categories, filterTransactions }) => {
+const TransactionDataFilter = ({ transactions, categories, filterTransactions, onEditTransaction }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [minAmount, setMinAmount] = useState('');
   const [maxAmount, setMaxAmount] = useState('');
   const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   const transactionListRef = useRef(null);
 
@@ -33,46 +35,82 @@ const TransactionDataFilter = ({ transactions, categories, filterTransactions })
     setFilteredTransactions(filtered);
   };
 
+  const handleEditTransaction = (transaction) => {
+    // Signaler à App que l'édition est demandée
+    onEditTransaction(transaction);
+    // Mettre à jour la transaction sélectionnée
+    setSelectedTransaction(transaction);
+  };
+
+  const resetFiltersAndClearList = () => {
+    // Effacer la liste des transactions filtrées
+    setFilteredTransactions([]);
+    // Réinitialiser les valeurs des filtres
+    setSelectedCategory('');
+    setStartDate('');
+    setEndDate('');
+    setMinAmount('');
+    setMaxAmount('');
+  };
+
   return (
     <div className="TransactionDataFilter-container">
       <h2>Filtrer les Transactions</h2>
-      {/* Ajouter des champs d'entrée et des sélecteurs pour les différents critères de filtrage */}
-      <label>Catégorie:</label>
+      <label>Catégorie : </label>
       <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">-- Sélectionner --</option>
+        <option value="">--Selectionnez--</option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category}
           </option>
         ))}
       </select>
-
-      <label>Date de début:</label>
+      <br />
+      <label>Date de début : </label>
       <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-
-      <label>Date de fin:</label>
+      <label>Date de fin : </label>
       <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-
-      <label>Montant minimum:</label>
+      <br />
+      <label>Montant minimum : </label>
       <input type="number" value={minAmount} onChange={(e) => setMinAmount(e.target.value)} />
-
-      <label>Montant maximum:</label>
+      <br />
+      <label>Montant maximum : </label>
       <input type="number" value={maxAmount} onChange={(e) => setMaxAmount(e.target.value)} />
 
-      {/* Bouton pour appliquer les filtres */}
+      {/* Bouton pour appliquer les filtres, réinitialiser les filtres et effacer la liste filtrée */}
       <button onClick={applyFilters}>Appliquer les filtres</button>
+      <button onClick={resetFiltersAndClearList}>Réinitialiser les filtres</button>
 
       {/* Liste des transactions filtrées */}
       <div className="transaction-filter-list" ref={transactionListRef}>
         {filteredTransactions.map((transaction, index) => (
           <div key={index} className="filtered-transaction-item">
-            <p>Montant: {transaction.amount} $</p>
-            <p>Catégorie: {transaction.category}</p>
-            <p>Date: {transaction.date}</p>
-            {/* Ajouter d'autres informations si nécessaire */}
+            <p className='list-p' id='montant'>Montant: {transaction.amount} $</p>
+            <p className='list-p' id='categorie'>Catégorie: {transaction.category}</p>
+            <p className='list-p' id='date'>Date: {transaction.date}</p>
+            <p className='list-p' id='description'>Description: {transaction.description || '-'}</p>
+            <p className='list-p' id='lieu'>Lieu: {transaction.place || '-'}</p>
+            <button id='edit' onClick={() => handleEditTransaction(transaction)}>
+              <img src='/img/editer.png' alt='Editer'/>
+            </button>
           </div>
         ))}
       </div>
+
+      {/* Afficher TransactionData pour l'édition */}
+      {selectedTransaction && (
+        <TransactionData
+          selectedTransaction={selectedTransaction}
+          onUpdate={(updatedTransaction) => {
+            const updatedTransactions = filteredTransactions.map(t => (t === selectedTransaction ? updatedTransaction : t));
+            setFilteredTransactions(updatedTransactions);
+            setSelectedTransaction(null);
+            filterTransactions(updatedTransactions); // Mettre à jour également les transactions non filtrées
+          }}
+          onCancel={() => setSelectedTransaction(null)}
+          categories={categories}
+        />
+      )}
     </div>
   );
 };

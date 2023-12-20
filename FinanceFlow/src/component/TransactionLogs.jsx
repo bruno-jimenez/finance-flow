@@ -38,6 +38,20 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction, catego
     setSelectedTransaction(null);
   };
 
+  const handleDownloadTransactions = () => {
+    const data = JSON.stringify(transactions, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'transactions.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="Transactionlogs-container">
       <div className="title-logs">
@@ -46,7 +60,7 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction, catego
         <p id='trois'></p>
       </div>  
       <div className="transaction-list" ref={transactionListRef}>
-        {transactions.slice(0, 9).map((transaction, index) => (
+        {transactions.slice(0, 9).reverse().map((transaction, index) => (
           <div key={index} className="transaction-item">
             <p className='list-p' id='montant'>Montant: {transaction.amount} $</p>
             <p className='list-p' id='categorie'>Catégorie: {transaction.category}</p>
@@ -61,7 +75,8 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction, catego
         ))}
       </div>
       <div className="button-container">
-        <button onClick={handleClearHistory} id='clear'>Clear History</button>
+        <button onClick={handleClearHistory} id='clear'>Effacer historique</button>
+        <button onClick={handleDownloadTransactions} id='download'>Télécharger l'historique</button>
       </div>
 
       {selectedTransaction && (

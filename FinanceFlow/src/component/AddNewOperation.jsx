@@ -21,16 +21,20 @@ const AddNewOperation = ({ addTransaction, categories }) => {
 
   return (
     <div className="Operation-component">
-      <h2>Add new Opération</h2>
-      <label>Amount : </label>
-      <input
+    <div id='title-operation'>
+    <h2>Ajouter une opération</h2>
+    </div>
+      <div id='amout-ope'>
+        <label>Amount : </label>
+        <input
         type="text"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="Montant"
-      />
-
+        />
+      </div>
       {/* Utiliser directement la liste de catégories */}
+      <div id='cate-ope'>
       <label>  Categorie:</label>
       <select
         value={selectedCategory}
@@ -43,12 +47,14 @@ const AddNewOperation = ({ addTransaction, categories }) => {
           </option>
         ))}
       </select>
-
+      </div>
+      <div id='adddel-ope'>
       {/* Ajouter la transaction (positive) */}
       <button className='button' id='Add' onClick={() => handleAddTransaction(true)}>Ajouter</button>
 
       {/* Ajouter la transaction (négative) */}
       <button className='button' id='Del' onClick={() => handleAddTransaction(false)}>Retirer</button>
+      </div>
     </div>
   );
 };
