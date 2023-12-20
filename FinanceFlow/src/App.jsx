@@ -3,18 +3,16 @@ import { useState } from 'react';
 import AddNewOperation from './component/AddNewOperation';
 import TransactionLogs from './component/TransactionLogs';
 import HowMuch from './component/HowMuch';
-import TransactionDataFilter from './component/TransactionDataFilter';
+import TransactionData from './component/TransactionData'; // Importer TransactionData ici
 import DataCategorie from './component/DataCategorie';
-import TransactionData from './component/TransactionData';
+import TransactionDataFilter from './component/TransactionDataFilter';
 import "./CSS/index.css"; /* CSS global */
 import "./CSS/Grid.css"; /*CSS sur l'organisation des grid*/
-<css></css>
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false); // Nouvel état pour le mode édition
 
   const addTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
@@ -31,12 +29,6 @@ const App = () => {
   const updateTransaction = (updatedTransactions) => {
     setTransactions(updatedTransactions);
     setSelectedTransaction(null);
-    setIsEditMode(false); // Désactiver le mode édition après la mise à jour
-  };
-
-  const handleEditTransaction = (transaction) => {
-    setSelectedTransaction(transaction);
-    setIsEditMode(true); // Activer le mode édition lorsqu'on clique sur "Éditer"
   };
 
   return (
@@ -55,7 +47,7 @@ const App = () => {
         <TransactionDataFilter
           transactions={transactions}
           categories={categories}
-          onEditTransaction={handleEditTransaction} // Passer la fonction pour gérer l'édition
+          onEditTransaction={setSelectedTransaction} // Passer la fonction de gestion de l'édition
         />
 
         {/* Utiliser le composant TransactionLogs pour afficher la liste des transactions et le solde restant */}
@@ -64,7 +56,7 @@ const App = () => {
           clearHistory={clearHistory}
           updateTransaction={updateTransaction}
           categories={categories}
-          onEditTransaction={handleEditTransaction} // Passer la fonction pour gérer l'édition
+          onEditTransaction={setSelectedTransaction} // Passer la fonction de gestion de l'édition
         />
 
         {/* Utiliser le composant HowMuch pour afficher le solde restant */}
@@ -76,20 +68,21 @@ const App = () => {
         <DataCategorie categories={categories} addCategory={addCategory} />
         
         {/* Composant TransactionData */}
-        {selectedTransaction && (
-          <TransactionData
-            selectedTransaction={selectedTransaction}
-            onUpdate={(updatedTransaction) => {
-              updateTransaction(transactions.map(t => (t === selectedTransaction ? updatedTransaction : t)));
-            }}
-            onCancel={() => {
-              setSelectedTransaction(null);
-              setIsEditMode(false);
-            }}
-            categories={categories}
-            isEditMode={isEditMode}
-          />
-        )}
+        {/* Toujours afficher le composant, mais avec la transaction sélectionnée comme prop */}
+        <TransactionData
+          selectedTransaction={selectedTransaction}
+          onUpdate={(updatedTransaction) => {
+            // Mettre à jour la transaction sélectionnée
+            setSelectedTransaction(updatedTransaction);
+            // Mettre à jour les transactions non filtrées si nécessaire
+            const updatedTransactions = transactions.map(t => (t === selectedTransaction ? updatedTransaction : t));
+            setTransactions(updatedTransactions);
+          }}
+          onCancel={() => setSelectedTransaction(null)}
+          categories={categories}
+          // Toujours éditable si une transaction est sélectionnée
+          editable={!!selectedTransaction}
+        />
       </div>
       
       <div className='Section-footer'>

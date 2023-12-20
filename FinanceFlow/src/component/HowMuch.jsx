@@ -20,7 +20,7 @@ const HowMuch = ({ transactions }) => {
   return (
     <div className='howmuch-container'>
       <h2>Solde Restant</h2>
-      <p>votre solde : {balance} $</p>
+      <p>Votre solde : {balance} $</p>
     </div>
   );
 };

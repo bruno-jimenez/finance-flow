@@ -8,7 +8,6 @@ const TransactionDataFilter = ({ transactions, categories, filterTransactions, o
   const [minAmount, setMinAmount] = useState('');
   const [maxAmount, setMaxAmount] = useState('');
   const [filteredTransactions, setFilteredTransactions] = useState([]);
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   const transactionListRef = useRef(null);
 
@@ -33,13 +32,6 @@ const TransactionDataFilter = ({ transactions, categories, filterTransactions, o
 
     // Mettre à jour l'état des transactions filtrées
     setFilteredTransactions(filtered);
-  };
-
-  const handleEditTransaction = (transaction) => {
-    // Signaler à App que l'édition est demandée
-    onEditTransaction(transaction);
-    // Mettre à jour la transaction sélectionnée
-    setSelectedTransaction(transaction);
   };
 
   const resetFiltersAndClearList = () => {
@@ -90,27 +82,12 @@ const TransactionDataFilter = ({ transactions, categories, filterTransactions, o
             <p className='list-p' id='date'>Date: {transaction.date}</p>
             <p className='list-p' id='description'>Description: {transaction.description || '-'}</p>
             <p className='list-p' id='lieu'>Lieu: {transaction.place || '-'}</p>
-            <button id='edit' onClick={() => handleEditTransaction(transaction)}>
+            <button id='edit' onClick={() => onEditTransaction(transaction)}>
               <img src='/img/editer.png' alt='Editer'/>
             </button>
           </div>
         ))}
       </div>
-
-      {/* Afficher TransactionData pour l'édition */}
-      {selectedTransaction && (
-        <TransactionData
-          selectedTransaction={selectedTransaction}
-          onUpdate={(updatedTransaction) => {
-            const updatedTransactions = filteredTransactions.map(t => (t === selectedTransaction ? updatedTransaction : t));
-            setFilteredTransactions(updatedTransactions);
-            setSelectedTransaction(null);
-            filterTransactions(updatedTransactions); // Mettre à jour également les transactions non filtrées
-          }}
-          onCancel={() => setSelectedTransaction(null)}
-          categories={categories}
-        />
-      )}
     </div>
   );
 };

@@ -1,10 +1,20 @@
 import { useState } from 'react';
 
 const TransactionData = ({ selectedTransaction, onUpdate, onCancel, categories }) => {
-  const [amount, setAmount] = useState(selectedTransaction.amount.toString());
-  const [description, setDescription] = useState(selectedTransaction.description || '');
-  const [place, setPlace] = useState(selectedTransaction.place || '');
-  const [selectedCategory, setSelectedCategory] = useState(selectedTransaction.category || '');
+  // Vérifie si selectedTransaction est null, auquel cas initialise les états avec des valeurs par défaut
+  const [amount, setAmount] = useState(selectedTransaction?.amount.toString() || '');
+  const [description, setDescription] = useState(selectedTransaction?.description || '');
+  const [place, setPlace] = useState(selectedTransaction?.place || '');
+  const [selectedCategory, setSelectedCategory] = useState(selectedTransaction?.category || '');
+
+  // Vérifie si selectedTransaction est null, auquel cas rend un message indiquant qu'aucune transaction n'est sélectionnée
+  if (!selectedTransaction) {
+    return (
+      <div className="modify">
+        <p>Aucune transaction sélectionnée.</p>
+      </div>
+    );
+  }
 
   const handleUpdateTransaction = () => {
     // Mettre à jour la transaction avec les nouvelles informations

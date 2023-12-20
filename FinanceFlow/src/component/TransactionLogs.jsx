@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import TransactionData from './TransactionData';
 
-const TransactionLogs = ({ transactions, clearHistory, updateTransaction, categories }) => {
+const TransactionLogs = ({ transactions, clearHistory, updateTransaction, categories, onEditTransaction }) => {
   const transactionListRef = useRef(null);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
@@ -23,6 +23,8 @@ const TransactionLogs = ({ transactions, clearHistory, updateTransaction, catego
   };
 
   const handleEditTransaction = (transaction) => {
+    // Utiliser la fonction onEditTransaction pour gérer l'édition
+    onEditTransaction(transaction);
     // Mettre à jour la transaction sélectionnée
     setSelectedTransaction(transaction);
   };

@@ -21,7 +21,7 @@ const DataCategorie = ({ categories, addCategory }) => {
 
   return (
     <div className='categorie-container'>
-      <h2 id='h2-categorie'>Categories pannel</h2>
+      <h2 id='h2-categorie'>Categories Panel</h2>
 
       <div className='newsuborcate' id='cate'>
         <label>New Categorie : {' '} </label>
@@ -35,28 +35,27 @@ const DataCategorie = ({ categories, addCategory }) => {
 
       <div className='newsuborcate' id='sub'>
         <div className='nobr'>
-        <label>Add Subcategorie to : </label>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">-- Select the categorie --</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-          
-        </select>
-       </div>
-      <br />
-        <label>New Subcatgorie:</label>
+          <label>Add Subcategorie to : </label>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">-- Select the categorie --</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+        <br />
+        <label>New Subcategorie:</label>
         <input
           type="text"
           value={newSubCategory}
           onChange={(e) => setNewSubCategory(e.target.value)}
         />
-      <br />
+        <br />
         <button className='button' id='AddSubCategorie' onClick={addSubCategory}>Add the Subcategorie</button>
       </div>
 
